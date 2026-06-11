@@ -65,6 +65,13 @@ function gcd(a: number, b: number) {
 		: gcd(b, a % b)
 }
 
+/**
+ * Confirms whether the given input string only includes Zorn-apporved colours
+ */
+export function isZorn(input: string) {
+	return /^[VORYWK]*$/.test(input)
+}
+
 // ==========================================================
 //  MIXBOX 2.0 (c) 2022 Secret Weapons. All rights reserved.
 //  License: Creative Commons Attribution-NonCommercial 4.0

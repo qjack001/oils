@@ -1,0 +1,46 @@
+<a href="https://gurneyjourney.blogspot.com/2011/07/zorn-palette.html" target="_blank">
+	<p>
+		I like that!
+	</p>
+	<picture>
+		<source srcset="/zorn.avif" type="image/avif"/>
+		<source srcset="/zorn.webp" type="image/webp"/>
+		<img src="/zorn.png" alt="Self-portrait of Anders Zorn" width="200"/>
+	</picture>
+</a>
+
+<style>
+	a, img
+	{
+		display: block;
+		width: 200px;
+	}
+
+	a
+	{
+		position: fixed;
+		inset-inline-start: 0;
+		inset-block-end: 0;
+	}
+
+	p
+	{
+		border: 1px solid black;
+		width: 12ch;
+		text-align: center;
+		position: absolute;
+		top: 8px;
+		left: 100px;
+		margin: 0;
+
+		&::after
+		{
+			content: "";
+			display: block;
+			width: 20px;
+			height: 1px;
+			border-bottom: 1px solid black;
+			transform: rotate(-30deg) translateY(8px);
+		}
+	}
+</style>

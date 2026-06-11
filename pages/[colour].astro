@@ -1,7 +1,8 @@
 ---
-import {reduce, mix, toHex} from '../components/colour'
+import {reduce, mix, toHex, isZorn} from '../components/colour'
 import Palette from '../components/palette.astro'
 import Preview from '../components/preview.astro'
+import Zorn from '../components/zorn.astro'
 
 // non-JS form submissions will pass it as a query param
 const param = Astro.url.searchParams.get('colour')
@@ -32,3 +33,4 @@ const hex = toHex(mix(colour))
 </form>
 <Palette/>
 
+{isZorn(colour) && <Zorn/>}
