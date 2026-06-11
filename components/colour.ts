@@ -69,7 +69,7 @@ function gcd(a: number, b: number) {
  * Confirms whether the given input string only includes Zorn-apporved colours
  */
 export function isZorn(input: string) {
-	return /^[VORYWK]*$/.test(input)
+	return /^[VORYWKI]*$/.test(input)
 }
 
 // ==========================================================
