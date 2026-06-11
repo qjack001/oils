@@ -6,5 +6,9 @@
 	</head>
 	<body>
 		<slot/>
+		<script>
+			// clean up any query params from form submit
+			history.replaceState(null, '', location.pathname)
+		</script>
 	</body>
 </html>
