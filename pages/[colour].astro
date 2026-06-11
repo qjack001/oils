@@ -10,7 +10,7 @@ import Zorn from '../components/zorn.astro'
 const param = Astro.url.searchParams.get('colour')
 const colour = reduce(param || Astro.params.colour)
 
-if (colour != Astro.params.colour) {
+if (param || colour != Astro.params.colour) {
 	return new Response(null, {
 		status: 303,
 		headers: {Location: `/${colour}`},
