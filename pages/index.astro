@@ -1,0 +1,15 @@
+---
+import Base from '../components/base.astro'
+import Input from '../components/input.astro'
+import Palette from '../components/palette.astro'
+import Preview from '../components/preview.astro'
+
+export const prerender = true
+---
+<Base>
+	<form action="/generate" method="GET">
+		<Preview/>
+		<Input/>
+	</form>
+	<Palette/>
+</Base>
