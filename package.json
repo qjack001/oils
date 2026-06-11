@@ -1,17 +1,12 @@
 {
-  "name": "",
-  "type": "module",
-  "version": "0.0.1",
-  "engines": {
-    "node": ">=22.12.0"
-  },
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "astro": "^6.4.6"
-  }
+	"name": "oils",
+	"version": "1.0.0",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build"
+	},
+	"dependencies": {
+		"@astrojs/netlify": "^7.0.13",
+		"astro": "^6.4.6"
+	}
 }
