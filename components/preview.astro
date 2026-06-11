@@ -3,7 +3,7 @@ interface Props {
 	hex?: string
 }
 
-const {hex} = Astro.props
+const hex = Astro.props.hex || '#000000'
 ---
 <output
 	id="colour_preview"

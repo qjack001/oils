@@ -7,6 +7,7 @@ interface Props {
 	<label for="colour_input">Colour</label>
 	<input
 		id="colour_input"
+		placeholder="ex: YYR"
 		value={Astro.props.colour}
 		type="text"
 		name="colour"
@@ -23,6 +24,7 @@ interface Props {
 	const code = document.getElementById('hex_code')
 
   	input.addEventListener('input', (event) => {
+		// @ts-ignore
 		const reduced = reduce(event.target.value)
     	history.replaceState(null, '', `/${reduced}`);
 
