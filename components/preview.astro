@@ -1,13 +1,12 @@
 ---
 interface Props {
-	id: string
 	hex?: string
 }
 
-const {id, hex} = Astro.props
+const {hex} = Astro.props
 ---
 <output
-	id={id}
+	id="colour_preview"
 	for="colour_input"
 	aria-label="Colour preview"
 	style=`background: ${hex}`
