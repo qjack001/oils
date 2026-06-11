@@ -1,5 +1,6 @@
 ---
 import {reduce, mix, toHex, isZorn} from '../components/colour'
+import Input from '../components/input.astro'
 import Palette from '../components/palette.astro'
 import Preview from '../components/preview.astro'
 import Zorn from '../components/zorn.astro'
@@ -20,17 +21,8 @@ const hex = toHex(mix(colour))
 
 <form action="/generate" method="GET">
 	<Preview id="d" hex={hex}/>
-	<label for="colour_input">Colour</label>
-	<input
-		id="colour_input"
-		value={colour}
-		type="text"
-		name="colour"
-		aria-describedby="palette"
-		autofocus
-	/>
-	<button type="submit">Mix</button>
+	<Input colour={colour}/>
 </form>
 <Palette/>
-
 {isZorn(colour) && <Zorn/>}
+

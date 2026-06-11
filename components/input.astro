@@ -1,0 +1,83 @@
+---
+interface Props {
+	colour?: string
+}
+---
+<div>
+	<label for="colour_input">Colour</label>
+	<input
+		id="colour_input"
+		value={Astro.props.colour}
+		type="text"
+		name="colour"
+		aria-describedby="palette"
+		autofocus
+	/>
+	<button type="submit">Mix</button>
+</div>
+<script>
+	import {reduce, mix, toHex} from './colour'
+	
+	const input = document.getElementById('colour_input')
+	const preview = document.getElementById('colour_preview')
+	const code = document.getElementById('hex_code')
+
+  	input.addEventListener('input', (event) => {
+		const reduced = reduce(event.target.value)
+    	history.replaceState(null, '', `/${reduced}`);
+
+		const hex = toHex(mix(reduced))
+		preview.style.background = hex
+		code.innerText = hex
+  	})
+</script>
+<style>
+	label
+	{
+		clip: rect(0 0 0 0); 
+		clip-path: inset(50%);
+		height: 1px;
+		overflow: hidden;
+		position: absolute;
+		white-space: nowrap; 
+		width: 1px;
+	}
+
+	input
+	{
+		text-transform: uppercase;
+		font-family: monospace;
+		font-size: 16px;
+		line-height: 28px;
+		padding: 0 1ch;
+		border-radius: 0;
+		border: 1px solid black;
+		outline: none;
+		flex: 1;
+
+		&:focus
+		{
+			border-color: rgb(0, 132, 255);
+		}
+	}
+
+	button
+	{
+		font-size: 16px;
+		line-height: 28px;
+		border-radius: 0;
+		border: 1px solid black;
+		outline: none;
+		padding: 0 2ch;
+		background: black;
+		color: white;
+	}
+
+	div
+	{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		margin: 8px 0;
+	}
+</style>
