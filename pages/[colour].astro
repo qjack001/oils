@@ -1,0 +1,33 @@
+---
+import {reduce, mix, toHex} from '../components/colour'
+import Palette from '../components/palette.astro'
+
+// non-JS form submissions will pass it as a query param
+const param = Astro.url.searchParams.get('colour')
+const colour = reduce(param || Astro.params.colour)
+
+if (colour != Astro.params.colour) {
+	return new Response(null, {
+		status: 303,
+		headers: {Location: `/${colour}`},
+	})
+}
+
+const hex = toHex(mix(colour))
+---
+
+<form action="/generate" method="GET">
+	<label for="colour_input">Colour</label>
+	<input
+		id="colour_input"
+		value={colour}
+		type="text"
+		name="colour"
+		aria-describedby="palette"
+		autofocus
+	/>
+	<button type="submit">Mix</button>
+</form>
+<p style=`background: ${hex}`>
+	{hex}
+</p>
