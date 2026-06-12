@@ -12,26 +12,41 @@ interface Props {
 		type="text"
 		name="colour"
 		aria-describedby="palette"
-		autofocus
+		autofocus="true"
+		autocomplete="off"
+		autocorrect="off"
+		spellcheck="false"
 	/>
 	<button type="submit">Mix</button>
 </div>
 <script>
-	import {reduce, mix, toHex} from './colour'
+	import {reduce, mix, toHex, getWeights} from './colour'
 	
 	const input = document.getElementById('colour_input')
 	const preview = document.getElementById('colour_preview')
 	const code = document.getElementById('hex_code')
 
-  	input.addEventListener('input', (event) => {
+	function dynamicallyUpdate(event: Event) {
 		// @ts-ignore
-		const reduced = reduce(event.target.value)
+		const colour = event.target.value
+		const reduced = reduce(colour)
     	history.replaceState(null, '', `/${reduced}`)
 
 		const hex = toHex(mix(reduced))
 		preview.style.background = hex
 		code.innerText = hex
-  	})
+
+		const charWidth = 1.4
+		const stops = getWeights(colour + 'x') // include dummy character at end to cut off gradient
+			.map((w) => (w) ? toHex(w) : 'transparent')
+			.map((hex, i) => `,\n${hex} ${i * charWidth}ch, ${hex} ${(i + 1) * charWidth}ch`)
+			.join('')
+
+		input.style.background = `linear-gradient(to right ${stops})`
+	}
+
+  	input.addEventListener('input', dynamicallyUpdate)
+	window.addEventListener('DOMContentLoaded', () => dynamicallyUpdate({target: input} as unknown as Event))
 </script>
 <style>
 	label
@@ -50,12 +65,18 @@ interface Props {
 		text-transform: uppercase;
 		font-family: monospace;
 		font-size: 16px;
+		/* font-weight: bold; */
+		letter-spacing: 0.4ch;
 		line-height: 28px;
-		padding: 0 1ch;
+		padding: 0 0.2ch;
 		border-radius: 0;
 		border: 1px solid black;
 		outline: none;
 		flex: 1;
+
+		color: black;
+		-webkit-text-stroke: 2px white;
+		paint-order: stroke fill;
 
 		&:focus
 		{

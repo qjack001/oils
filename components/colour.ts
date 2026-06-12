@@ -25,12 +25,16 @@ export const COLOURS = Object.entries(COLOUR)
  * Mix all of the colours included in the input string; returns mixbox latent colour array
  */
 export function mix(input: string): Latent {
-	const weights = [...input.toUpperCase()]
-		.map(char => COLOURS.find(([name]) => name.startsWith(char))?.[1])
+	const weights = getWeights(input)
 		.filter(Boolean) // ignore any letters that didn't map
 	
 	return weights.reduce((mixed, colour) => colour.map((w, i) => mixed[i] + w), new Array(7).fill(0))
 		.map((w) => w / (weights.length || 1)) as Latent
+}
+
+export function getWeights(input: string): (Latent | undefined)[] {
+	return [...input.toUpperCase()]
+		.map(char => COLOURS.find(([name]) => name.startsWith(char))?.[1])
 }
  
 /**
