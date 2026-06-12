@@ -7,7 +7,7 @@ import {COLOURS, toHex} from './colour'
 		{COLOURS.map(([name, colour]) => (
 			<li>
 				<button
-					onclick={`colour_input.value += '${name.charAt(0)}'`}
+					onclick={`colour_input.value += '${name.charAt(0)}'; colour_input.dispatchEvent(new InputEvent('input', {bubbles: true}))`}
 					style={`background: ${toHex(colour)}; color: contrast-color(${toHex(colour)})`}
 				>
 					<u>{name.charAt(0)}</u>{name.slice(1)}
