@@ -1,6 +1,6 @@
 type Latent= [number, number, number, number, number, number, number]
 
-export const COLOUR: Record<string, [number, number, number, number, number, number, number]> = {
+export const COLOUR: Record<string, Latent> = {
 	Red:     [0.0000, 0.2431, 0.7490, 0.0078,  0.1269, -0.1331, -0.0511],
 	// to avoid conflict with "Ochre"
 	// Orange:  [0.0118, 0.7848, 0.2020, 0.0015,  0.0376, -0.0186, -0.1526],
@@ -69,7 +69,7 @@ function gcd(a: number, b: number) {
  * Confirms whether the given input string only includes Zorn-apporved colours
  */
 export function isZorn(input: string) {
-	return /^[VORYWKI]*$/.test(input)
+	return input && /^[VORYWKI]*$/.test(input)
 }
 
 // ==========================================================
